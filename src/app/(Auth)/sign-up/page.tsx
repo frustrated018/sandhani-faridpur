@@ -14,14 +14,28 @@ import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { MdEmail } from "react-icons/md";
 
-const Login = () => {
+export default function SignUp() {
   return (
     <Card className="w-full max-w-[400px] bg-transparent text-white backdrop-blur-lg">
       <CardHeader>
-        <CardTitle className="text-center text-2xl">Login</CardTitle>
+        <CardTitle className="text-center text-2xl">Sign Up</CardTitle>
       </CardHeader>
       <CardContent>
         <form className="space-y-4">
+          <div>
+            <Label htmlFor="name">Name:</Label>
+            <Input />
+          </div>
+          <section className="flex items-center gap-5">
+            <div>
+              <Label htmlFor="group">Blood Group:</Label>
+              <Input />
+            </div>
+            <div>
+              <Label htmlFor="photo">Profile Picture:</Label>
+              <Input />
+            </div>
+          </section>
           <div>
             <Label htmlFor="email">Eamil:</Label>
             <Input />
@@ -54,11 +68,12 @@ const Login = () => {
           </section>
         </form>
       </CardContent>
+
       <CardFooter>
         <div className="flex items-center gap-1">
-          Don&apos;t have an account? Make one
+          Already have an account? Log in
           <Link
-            href="/sign-up"
+            href="/login"
             className="flex items-center underline hover:font-semibold hover:text-white"
           >
             Here <ArrowTopRightIcon />
@@ -67,6 +82,4 @@ const Login = () => {
       </CardFooter>
     </Card>
   );
-};
-
-export default Login;
+}
