@@ -16,7 +16,7 @@ import { MdEmail } from "react-icons/md";
 
 export default function SignUp() {
   return (
-    <Card className="w-full max-w-[400px] bg-transparent text-white backdrop-blur-lg">
+    <Card className="w-full max-w-[400px] bg-transparent text-white backdrop-blur-lg my-10">
       <CardHeader>
         <CardTitle className="text-center text-2xl">Sign Up</CardTitle>
       </CardHeader>
@@ -70,7 +70,7 @@ export default function SignUp() {
       </CardContent>
 
       <CardFooter>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 flex-wrap">
           Already have an account? Log in
           <Link
             href="/login"

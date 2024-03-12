@@ -16,7 +16,7 @@ import { MdEmail } from "react-icons/md";
 
 const Login = () => {
   return (
-    <Card className="w-full max-w-[400px] bg-transparent text-white backdrop-blur-lg">
+    <Card className="w-full max-w-[400px] bg-transparent text-white backdrop-blur-lg my-10">
       <CardHeader>
         <CardTitle className="text-center text-2xl">Login</CardTitle>
       </CardHeader>
@@ -37,7 +37,7 @@ const Login = () => {
               className="w-48 items-center gap-1 text-secondary-foreground"
             >
               <MdEmail size={20} />
-              Sign up with Email
+              Login with Email
             </Button>
             <span className="flex items-center gap-2 font-bold ">
               <Separator className="w-[60px]" />
@@ -49,13 +49,13 @@ const Login = () => {
               variant="outline"
             >
               <FcGoogle size={20} />
-              Sign up with Goolge
+              Login with Goolge
             </Button>
           </section>
         </form>
       </CardContent>
       <CardFooter>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 flex-wrap">
           Don&apos;t have an account? Make one
           <Link
             href="/sign-up"

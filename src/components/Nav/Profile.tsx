@@ -13,6 +13,7 @@ import { SlLogin, SlLogout } from "react-icons/sl";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 export default function Profile() {
   const [user, setUser] = useState(false);
@@ -63,6 +64,7 @@ export default function Profile() {
 
 export function MobileProfile() {
   const [user, setUser] = useState(false);
+  const router = useRouter();
 
   const handleUser = () => {
     user
@@ -75,7 +77,7 @@ export function MobileProfile() {
   return (
     // TODO: Turn these buttons into sheet trigger to close the sheet upon click
     <>
-      <div className="flex justify-center items-center my-5">
+      <div className="my-5 flex items-center justify-center">
         <Avatar>
           <AvatarImage src="https://source.unsplash.com/hands-formed-together-with-red-heart-paint-cAtzHUz7Z8g" />
           <AvatarFallback>DP</AvatarFallback>
@@ -96,7 +98,7 @@ export function MobileProfile() {
             Logout <SlLogout />
           </Button>
         ) : (
-          <Button>Login</Button>
+          <Button onClick={() => router.push("/login")}>Login</Button>
         )}
       </div>
     </>

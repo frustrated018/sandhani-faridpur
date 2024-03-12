@@ -7,10 +7,10 @@ export default function AuthLayout({
 }) {
   return (
     <section
-      className="h-screen min-h-screen bg-cover bg-no-repeat"
+      className="min-h-screen bg-cover bg-no-repeat"
       style={{ backgroundImage: `url('/authBg.svg')` }}
     >
-      <div className="flex h-screen items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center">
         {children}
       </div>
     </section>
