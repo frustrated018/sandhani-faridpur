@@ -35,7 +35,7 @@ export default function Navbar() {
         <section className="flex items-center justify-between py-4">
           <Link href="/" className="flex items-center gap-2">
             <Image src="/logo-small.svg" alt="logo" height={50} width={50} />
-            <h3 className="text-xl font-semibold xl:text-2xl">
+            <h3 className="text-xl font-semibold xl:text-2xl font-cabinate-grotesk">
               Sandhani, Faridpur
             </h3>
           </Link>
