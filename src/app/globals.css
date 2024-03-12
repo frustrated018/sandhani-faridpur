@@ -49,6 +49,10 @@
   }
 }
 
+body {
+  font-family: var(--font-satoshi);
+}
+
 @layer base {
   * {
     @apply border-border;

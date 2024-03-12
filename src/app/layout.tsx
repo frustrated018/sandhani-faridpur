@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
-
-const inter = Inter({ subsets: ["latin"] });
+import { cabinateGrotesk, satoshi } from "@/Fonts/Fonts";
 
 export const metadata: Metadata = {
   title: "Sandhani | Faridpur Branch",
@@ -21,9 +19,9 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className={inter.className}>
+      <body className={`${satoshi.variable} ${cabinateGrotesk.variable}`}>
         {children}
-        <Toaster richColors position="top-center"/>
+        <Toaster richColors position="top-center" />
       </body>
     </html>
   );
