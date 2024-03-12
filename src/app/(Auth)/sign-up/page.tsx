@@ -13,29 +13,50 @@ import { ArrowTopRightIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { MdEmail } from "react-icons/md";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function SignUp() {
   return (
-    <Card className="w-full max-w-[400px] bg-transparent text-white backdrop-blur-lg my-10">
+    <Card className="my-10 w-full max-w-[400px] bg-transparent text-white backdrop-blur-lg">
       <CardHeader>
         <CardTitle className="text-center text-2xl">Sign Up</CardTitle>
       </CardHeader>
       <CardContent>
         <form className="space-y-4">
-          <div>
+         <section className="flex items-center gap-2">
+         <div>
             <Label htmlFor="name">Name:</Label>
             <Input />
           </div>
-          <section className="flex items-center gap-5">
-            <div>
-              <Label htmlFor="group">Blood Group:</Label>
-              <Input />
-            </div>
-            <div>
-              <Label htmlFor="photo">Profile Picture:</Label>
-              <Input />
-            </div>
-          </section>
+          <div>
+            <Label htmlFor="group">Blood Group:</Label>
+            <Select>
+              <SelectTrigger className="w-[160px]">
+                <SelectValue placeholder="Blood Group" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="A+">A+</SelectItem>
+                <SelectItem value="A-">A-</SelectItem>
+                <SelectItem value="B+">B+</SelectItem>
+                <SelectItem value="B-">B-</SelectItem>
+                <SelectItem value="AB+">AB+</SelectItem>
+                <SelectItem value="AB-">AB-</SelectItem>
+                <SelectItem value="O+">O+</SelectItem>
+                <SelectItem value="O-">O-</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+         </section>
+          <div>
+            <Label htmlFor="photo">Profile Picture:</Label>
+            <Input />
+          </div>
           <div>
             <Label htmlFor="email">Eamil:</Label>
             <Input />
@@ -70,7 +91,7 @@ export default function SignUp() {
       </CardContent>
 
       <CardFooter>
-        <div className="flex items-center gap-1 flex-wrap">
+        <div className="flex flex-wrap items-center gap-1">
           Already have an account? Log in
           <Link
             href="/login"
