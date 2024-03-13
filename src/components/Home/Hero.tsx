@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import {
@@ -7,6 +8,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import * as React from "react";
+import Autoplay from "embla-carousel-autoplay";
 
 export default function Hero() {
   const sliderItems = [
@@ -14,21 +17,21 @@ export default function Hero() {
       src: "https://source.unsplash.com/woman-in-white-long-sleeve-shirt-and-white-pants-doing-exercise-sTTeaN4wwrU",
     },
     {
-      src: "https://source.unsplash.com/woman-in-white-long-sleeve-shirt-and-white-pants-doing-exercise-sTTeaN4wwrU",
+      src: "https://source.unsplash.com/person-on-chair-donating-blood-X20g2GQsVdA",
     },
     {
-      src: "https://source.unsplash.com/woman-in-white-long-sleeve-shirt-and-white-pants-doing-exercise-sTTeaN4wwrU",
+      src: "https://source.unsplash.com/hands-formed-together-with-red-heart-paint-cAtzHUz7Z8g",
     },
     {
-      src: "https://source.unsplash.com/woman-in-white-long-sleeve-shirt-and-white-pants-doing-exercise-sTTeaN4wwrU",
+      src: "https://source.unsplash.com/grayscale-photo-of-man-in-t-shirt-and-watch-holding-smartphone-PMnbMcJeftk",
     },
     {
-      src: "https://source.unsplash.com/woman-in-white-long-sleeve-shirt-and-white-pants-doing-exercise-sTTeaN4wwrU",
-    },
-    {
-      src: "https://source.unsplash.com/woman-in-white-long-sleeve-shirt-and-white-pants-doing-exercise-sTTeaN4wwrU",
+      src: "https://source.unsplash.com/person-in-white-long-sleeve-shirt-sitting-on-chair-2rNHliX6XHk",
     },
   ];
+
+  const plugin = React.useRef(Autoplay({ delay: 3500 }));
+
   return (
     <MaxWidthWrapper className="py-10">
       <section className="flex flex-col items-center space-y-4">
@@ -42,7 +45,11 @@ export default function Hero() {
           </p>
         </div>
 
-        <Carousel className="mx-auto w-full max-w-screen-lg">
+        <Carousel
+          className="mx-auto w-full max-w-screen-lg"
+          opts={{ loop: true }}
+          plugins={[plugin.current]}
+        >
           <CarouselContent className="pb-10">
             {sliderItems.map((item, idx) => (
               <CarouselItem key={item.src + idx}>
@@ -54,13 +61,14 @@ export default function Hero() {
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       src={item.src}
+                      priority={false}
                     />
                   </div>
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <div className="absolute bottom-0 left-1/2 mt-10">
+          <div className="absolute bottom-0 left-1/2 ml-4 mt-10">
             <CarouselPrevious className="size-10 sm:size-6" />
             <CarouselNext className="size-10 sm:size-6" />
           </div>
