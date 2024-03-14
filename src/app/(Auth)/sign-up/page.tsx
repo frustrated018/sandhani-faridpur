@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -20,8 +21,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { toast } from "sonner";
+import { UploadDropzone } from "@/utils/uploadthing";
+import Image from "next/image";
+import { useState } from "react";
+
+//TODO: Future issue: When the user signs up with Google there is no blood type!! So need to account for that when creating db!!
 
 export default function SignUp() {
+  const [avatarUrl, setAvatarUrl] = useState("");
+
   return (
     <Card className="my-10 w-full max-w-[400px] bg-transparent text-white backdrop-blur-lg">
       <CardHeader>
@@ -29,33 +38,79 @@ export default function SignUp() {
       </CardHeader>
       <CardContent>
         <form className="space-y-4">
-         <section className="flex items-center gap-2">
-         <div>
-            <Label htmlFor="name">Name:</Label>
-            <Input />
-          </div>
-          <div>
-            <Label htmlFor="group">Blood Group:</Label>
-            <Select>
-              <SelectTrigger className="w-[160px]">
-                <SelectValue placeholder="Blood Group" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="A+">A+</SelectItem>
-                <SelectItem value="A-">A-</SelectItem>
-                <SelectItem value="B+">B+</SelectItem>
-                <SelectItem value="B-">B-</SelectItem>
-                <SelectItem value="AB+">AB+</SelectItem>
-                <SelectItem value="AB-">AB-</SelectItem>
-                <SelectItem value="O+">O+</SelectItem>
-                <SelectItem value="O-">O-</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-         </section>
+          <section className="flex items-center gap-2">
+            <div>
+              <Label htmlFor="name">Name:</Label>
+              <Input />
+            </div>
+            <div>
+              <Label htmlFor="group">Blood Group:</Label>
+              <Select>
+                <SelectTrigger className="w-[160px]">
+                  <SelectValue placeholder="Blood Group" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="A+">A+</SelectItem>
+                  <SelectItem value="A-">A-</SelectItem>
+                  <SelectItem value="B+">B+</SelectItem>
+                  <SelectItem value="B-">B-</SelectItem>
+                  <SelectItem value="AB+">AB+</SelectItem>
+                  <SelectItem value="AB-">AB-</SelectItem>
+                  <SelectItem value="O+">O+</SelectItem>
+                  <SelectItem value="O-">O-</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </section>
+          {/* Picture Uploader */}
           <div>
             <Label htmlFor="photo">Profile Picture:</Label>
-            <Input />
+            <>
+              {!avatarUrl && (
+                <UploadDropzone
+                  endpoint="signupUploader"
+                  appearance={{
+                    button: {
+                      backgroundColor: "#dc2626",
+                    },
+                    label: {
+                      color: "#dc2626",
+                    },
+                    container: {
+                      backgroundColor: "#f3f4f6",
+                      border: "none",
+                    },
+                  }}
+                  content={{
+                    allowedContent: "MAX img size 2MB",
+                    label: "Choose file or drag & drop",
+                  }}
+                  onClientUploadComplete={(res) => {
+                    // Do something with the response
+                    // console.log(res[0].url);
+                    toast.success("Upload Completed");
+                    setAvatarUrl(res[0].url);
+                  }}
+                  onUploadError={(error: Error) => {
+                    // Do something with the error.
+                    toast.error(`Failed to uplaod image!`, {
+                      description: `${error.message}`,
+                    });
+                  }}
+                />
+              )}
+              {avatarUrl && (
+                <div className="rounded-xl">
+                  <Image
+                    className="rounded-xl"
+                    src={avatarUrl}
+                    alt="profile picture"
+                    height={100}
+                    width={100}
+                  />
+                </div>
+              )}
+            </>
           </div>
           <div>
             <Label htmlFor="email">Eamil:</Label>
