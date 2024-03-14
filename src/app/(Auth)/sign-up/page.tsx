@@ -41,7 +41,13 @@ export default function SignUp() {
           <section className="flex items-center gap-2">
             <div>
               <Label htmlFor="name">Name:</Label>
-              <Input />
+              <Input
+                name="name"
+                type="text"
+                placeholder="John Doe"
+                required
+                className="placeholder:text-secondary"
+              />
             </div>
             <div>
               <Label htmlFor="group">Blood Group:</Label>
@@ -100,13 +106,14 @@ export default function SignUp() {
                 />
               )}
               {avatarUrl && (
-                <div className="rounded-xl">
+                <div className="relative mx-auto aspect-square w-4/5 rounded-xl">
                   <Image
-                    className="rounded-xl"
+                    className="aspect-square rounded-xl object-contain object-center"
                     src={avatarUrl}
                     alt="profile picture"
-                    height={100}
-                    width={100}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    priority={false}
                   />
                 </div>
               )}
@@ -114,11 +121,23 @@ export default function SignUp() {
           </div>
           <div>
             <Label htmlFor="email">Eamil:</Label>
-            <Input />
+            <Input
+              name="email"
+              type="email"
+              placeholder="example@email.com"
+              required
+              className="placeholder:text-secondary"
+            />
           </div>
           <div>
             <Label htmlFor="password">Password:</Label>
-            <Input />
+            <Input
+              name="password"
+              type="password"
+              placeholder="*********"
+              required
+              className="placeholder:text-secondary"
+            />
           </div>
           <section className="flex flex-col items-center gap-2">
             <Button
