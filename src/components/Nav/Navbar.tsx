@@ -2,12 +2,8 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Image from "next/image";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import {
-  TbCalendarEvent,
-  TbDropletPlus,
-  TbInfoSquare,
-  TbMail,
-} from "react-icons/tb";
+import { TbCalendarEvent, TbDropletPlus } from "react-icons/tb";
+import { BsDroplet } from "react-icons/bs";
 import { RiGalleryLine } from "react-icons/ri";
 import Profile, { MobileProfile } from "./Profile";
 import {
@@ -22,8 +18,7 @@ import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 
 const links = [
   { href: "/request", label: "Request", icon: TbDropletPlus },
-  { href: "/about", label: "About", icon: TbInfoSquare },
-  { href: "/contact", label: "Contact", icon: TbMail },
+  { href: "/donate", label: "Donate", icon: BsDroplet },
   { href: "/gallery", label: "Gallery", icon: RiGalleryLine },
   { href: "/events", label: "Events", icon: TbCalendarEvent },
 ];
@@ -51,8 +46,10 @@ export default function Navbar() {
                     className: "items-center gap-2",
                   })}
                 >
-                  {link.icon ? <link.icon /> : null}
-                  {link.label}
+                  {link.icon ? (
+                    <link.icon className="text-red-600" size={20} />
+                  ) : null}
+                  <span className="text-lg">{link.label}</span>
                 </Link>
               ))}
             </div>
@@ -61,7 +58,7 @@ export default function Navbar() {
               <Profile />
             </div>
 
-            {/* Mobile Nav */}
+            {/* //! Mobile Nav */}
             <div className="lg:hidden">
               <Sheet>
                 <SheetTrigger>
@@ -87,8 +84,10 @@ export default function Navbar() {
                           className: "items-center gap-2",
                         })}
                       >
-                        {link.icon ? <link.icon /> : null}
-                        {link.label}
+                        {link.icon ? (
+                          <link.icon className="text-red-600" size={15} />
+                        ) : null}
+                        <span>{link.label}</span>
                       </Link>
                     ))}
                   </div>
