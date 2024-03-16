@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,46 +13,49 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
+import { LoginLink, LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
 export default function Profile() {
-  const [user, setUser] = useState(false);
-
-  const handleUser = () => {
-    user
-      ? toast.info("Working on it")
-      : toast.error("Please Login!", {
-          description: "Can't acccess this route without loggin in.",
-        });
-  };
+  const { user, isAuthenticated, isLoading, getPermissions } =
+    useKindeBrowserClient();
 
   return (
     <div className="flex items-center gap-2">
       <DropdownMenu>
         <DropdownMenuTrigger>
           <Avatar>
-            <AvatarImage src="https://source.unsplash.com/hands-formed-together-with-red-heart-paint-cAtzHUz7Z8g" />
-            <AvatarFallback>DP</AvatarFallback>
+            <AvatarImage
+              src={
+                user
+                  ? user.picture!
+                  : "https://source.unsplash.com/a-close-up-of-a-blue-and-yellow-liquid-F573ZRbKOEw"
+              }
+            />
+            <AvatarFallback className="bg-primary font-cabinate-grotesk text-xl font-semibold text-white">
+              {user?.given_name?.[0]}
+            </AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel>{user ? "John Doe" : "No User"}</DropdownMenuLabel>
+          <DropdownMenuLabel>
+            {user ? user.given_name : "No User"}
+          </DropdownMenuLabel>
           <DropdownMenuSeparator />
           {user ? (
-            <DropdownMenuItem className="gap-2">
-              Logout <SlLogout />
+            <DropdownMenuItem
+              onClick={() => toast.success("Logout Successfull")}
+            >
+              <LogoutLink>Logout</LogoutLink>
             </DropdownMenuItem>
           ) : (
-            <Link href="/login">
-              <DropdownMenuItem className="gap-2">
-                Login <SlLogin />
-              </DropdownMenuItem>
-            </Link>
+            <DropdownMenuItem asChild>
+              <LoginLink>Sign in</LoginLink>
+            </DropdownMenuItem>
           )}
-          <DropdownMenuItem onClick={() => setUser(!user)}>
-            Change State
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={handleUser}>Dashboard</DropdownMenuItem>
-          <DropdownMenuItem onClick={handleUser}>My Donation</DropdownMenuItem>
+
+          <DropdownMenuItem>Dashboard</DropdownMenuItem>
+          <DropdownMenuItem>My Donation</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
@@ -98,7 +100,7 @@ export function MobileProfile() {
             Logout <SlLogout />
           </Button>
         ) : (
-          <Button onClick={() => router.push("/login")}>Login</Button>
+          <LoginLink>Sign in</LoginLink>
         )}
       </div>
     </>
