@@ -8,7 +8,7 @@ interface sectionTitleProps {
 
 const SectionTitle = ({ title, subTitle, className }: sectionTitleProps) => {
   return (
-    <div className={cn("max-w-[600px] text-center", className)}>
+    <div className={cn("max-w-[600px] text-center mx-auto", className)}>
       <h1 className="font-cabinate-grotesk text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
         {title}
       </h1>
