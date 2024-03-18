@@ -1,5 +1,6 @@
 import About from "@/components/Home/About";
 import Contact from "@/components/Home/Contact";
+import Faq from "@/components/Home/Faq";
 import Hero from "@/components/Home/Hero";
 import Navbar from "@/components/Nav/Navbar";
 
@@ -9,6 +10,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <About />
+      <Faq />
       <Contact />
     </main>
   );
