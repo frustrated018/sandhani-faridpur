@@ -65,7 +65,7 @@ const Faq = () => {
         >
           {bloodDonationFAQ.map((faq, idx) => (
             <AccordionItem key={faq.question + idx} value={`item-${idx}`}>
-              <AccordionTrigger>{faq.question}</AccordionTrigger>
+              <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
               <AccordionContent>{faq.answer}</AccordionContent>
             </AccordionItem>
           ))}
