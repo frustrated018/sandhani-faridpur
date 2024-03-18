@@ -7,18 +7,45 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { ReloadIcon } from "@radix-ui/react-icons";
+import { useRouter } from "next/navigation";
+import { FormEvent, useState } from "react";
+import { toast } from "sonner";
+
+//! ISSUE: Potential issue to keep in mind... If user has selected a date to donate and hasn't donated then they shouldn't be able to fill this form again.
+//! Fix: Let the admin mark these requests as pending or done and based on that show feedback to the user
 
 const DonationFom = () => {
+  const router = useRouter();
+
+  const [submitting, setSubmitting] = useState(false);
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const donationDate = formData.get("donationDate");
+
+    setSubmitting(true);
+    //TODO: DB Call
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    toast.success("Scheduled Successfully!", {
+      description: `Donation is scheduled for ${donationDate}`,
+      duration: 5000,
+    });
+
+    const resetForm = e.target as HTMLFormElement;
+    resetForm.reset();
+    router.push("/");
+    setSubmitting(false);
+  };
   return (
     <Card className="mx-auto mb-10 max-w-md">
       <CardContent>
-        <form className="mt-5 space-y-3">
+        <form onSubmit={handleSubmit} className="mt-5 space-y-3">
           <div>
             <Label htmlFor="fullName">Full Name:</Label>
             <Input type="text" id="fullName" name="fullName" required />
@@ -115,7 +142,19 @@ const DonationFom = () => {
             </RadioGroup>
           </div>
 
-          <Button type="submit">Schedule Donation</Button>
+          <div>
+            <Label htmlFor="donationDate">Select a date for Donation:</Label>
+            <Input type="date" id="donationDate" name="donationDate" required />
+          </div>
+
+          {submitting ? (
+            <Button disabled>
+              <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+              Please wait
+            </Button>
+          ) : (
+            <Button type="submit">Schedule Donation</Button>
+          )}
         </form>
       </CardContent>
     </Card>
