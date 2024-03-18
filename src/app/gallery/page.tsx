@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer/Footer";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Navbar from "@/components/Nav/Navbar";
 import SectionTitle from "@/components/SectionTitle";
@@ -57,6 +58,8 @@ export default function GalleryPage() {
           />
         </div>
       </MaxWidthWrapper>
+
+      <Footer />
     </>
   );
 }
