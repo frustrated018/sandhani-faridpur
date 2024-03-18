@@ -8,7 +8,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { LoginLink, LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import {
+  LoginLink,
+  LogoutLink,
+  RegisterLink,
+} from "@kinde-oss/kinde-auth-nextjs/components";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 export default async function Profile() {
@@ -51,17 +55,23 @@ export default async function Profile() {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             {user ? (
-              <DropdownMenuItem asChild>
-                <LogoutLink>Logout</LogoutLink>
-              </DropdownMenuItem>
+              <>
+                <DropdownMenuItem asChild>
+                  <LogoutLink>Logout</LogoutLink>
+                </DropdownMenuItem>
+                <DropdownMenuItem>Dashboard</DropdownMenuItem>
+                <DropdownMenuItem>My Donation</DropdownMenuItem>
+              </>
             ) : (
-              <DropdownMenuItem asChild>
-                <LoginLink>Sign in</LoginLink>
-              </DropdownMenuItem>
+              <>
+                <DropdownMenuItem asChild>
+                  <LoginLink>Login</LoginLink>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <RegisterLink>Register</RegisterLink>
+                </DropdownMenuItem>
+              </>
             )}
-
-            <DropdownMenuItem>Dashboard</DropdownMenuItem>
-            <DropdownMenuItem>My Donation</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
@@ -105,16 +115,23 @@ export async function MobileProfile() {
         </Avatar>
       </div>
       <div className="grid grid-cols-2 gap-2">
-        <Button variant="outline">Dashboard</Button>
-        <Button variant="outline">My Donation</Button>
         {user ? (
-          <LogoutLink className={buttonVariants({ variant: "outline" })}>
-            Logout
-          </LogoutLink>
+          <>
+            <Button variant="outline">Dashboard</Button>
+            <Button variant="outline">My Donation</Button>
+            <LogoutLink className={buttonVariants({ variant: "outline" })}>
+              Logout
+            </LogoutLink>
+          </>
         ) : (
-          <LoginLink className={buttonVariants({ variant: "outline" })}>
-            Login
-          </LoginLink>
+          <>
+            <LoginLink className={buttonVariants({ variant: "outline" })}>
+              Login
+            </LoginLink>
+            <RegisterLink className={buttonVariants({ variant: "outline" })}>
+              Register
+            </RegisterLink>
+          </>
         )}
       </div>
     </>
