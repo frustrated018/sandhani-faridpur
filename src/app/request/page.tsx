@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
+import ReqCard from "./ReqCard";
 
 // TODO: The data in this page will load from the db. It will be the donors db and we will fetch the data from the server and sort it by blood group and show cards based on that
 
@@ -22,6 +23,18 @@ const RequestPage = async () => {
   if (!isLoggedIn) {
     redirect("api/auth/login");
   }
+
+  // Data for blood groups
+  const bloodGroups = [
+    { title: "A (+ve)", available: 7, phone: "012342523423" },
+    { title: "A (-ve)", available: 3, phone: "012342523423" },
+    { title: "B (+ve)", available: 10, phone: "012342523423" },
+    { title: "B (-ve)", available: 4, phone: "012342523423" },
+    { title: "O (+ve)", available: 6, phone: "012342523423" },
+    { title: "O (-ve)", available: 2, phone: "012342523423" },
+    { title: "AB (+ve)", available: 3, phone: "012342523423" },
+    { title: "AB (-ve)", available: 9, phone: "012342523423" },
+  ];
 
   return (
     <>
@@ -41,101 +54,9 @@ const RequestPage = async () => {
         {/* Blood Cards */}
 
         <section className="mb-10 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
-          <Card className="bg-secondary">
-            <CardHeader>
-              <CardTitle className="text-2xl text-red-500">A (+ve)</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <h3 className="text-xl">Available Now: 7 bags</h3>
-            </CardContent>
-            <CardFooter>
-              <Button>Call Now</Button>
-            </CardFooter>
-          </Card>
-
-          <Card className="bg-secondary">
-            <CardHeader>
-              <CardTitle className="text-2xl text-red-500">A (-ve)</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <h3 className="text-xl">Available Now: 3 bags</h3>
-            </CardContent>
-            <CardFooter>
-              <Button>Call Now</Button>
-            </CardFooter>
-          </Card>
-
-          <Card className="bg-secondary">
-            <CardHeader>
-              <CardTitle className="text-2xl text-red-500">B (+ve)</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <h3 className="text-xl">Available Now: 10 bags</h3>
-            </CardContent>
-            <CardFooter>
-              <Button>Call Now</Button>
-            </CardFooter>
-          </Card>
-
-          <Card className="bg-secondary">
-            <CardHeader>
-              <CardTitle className="text-2xl text-red-500">B (-ve)</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <h3 className="text-xl">Available Now: 4 bags</h3>
-            </CardContent>
-            <CardFooter>
-              <Button>Call Now</Button>
-            </CardFooter>
-          </Card>
-
-          <Card className="bg-secondary">
-            <CardHeader>
-              <CardTitle className="text-2xl text-red-500">O (+ve)</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <h3 className="text-xl">Available Now: 6 bags</h3>
-            </CardContent>
-            <CardFooter>
-              <Button>Call Now</Button>
-            </CardFooter>
-          </Card>
-
-          <Card className="bg-secondary">
-            <CardHeader>
-              <CardTitle className="text-2xl text-red-500">O (-ve)</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <h3 className="text-xl">Available Now: 2 bags</h3>
-            </CardContent>
-            <CardFooter>
-              <Button>Call Now</Button>
-            </CardFooter>
-          </Card>
-
-          <Card className="bg-secondary">
-            <CardHeader>
-              <CardTitle className="text-2xl text-red-500">AB (+ve)</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <h3 className="text-xl">Available Now: 3 bags</h3>
-            </CardContent>
-            <CardFooter>
-              <Button>Call Now</Button>
-            </CardFooter>
-          </Card>
-
-          <Card className="bg-secondary">
-            <CardHeader>
-              <CardTitle className="text-2xl text-red-500">AB (-ve)</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <h3 className="text-xl">Available Now: 9 bags</h3>
-            </CardContent>
-            <CardFooter>
-              <Button>Call Now</Button>
-            </CardFooter>
-          </Card>
+          {bloodGroups.map((bloodGroup, idx) => (
+            <ReqCard key={idx + bloodGroup.title} data={bloodGroup} />
+          ))}
         </section>
       </MaxWidthWrapper>
     </>
