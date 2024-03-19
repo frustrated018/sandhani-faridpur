@@ -59,7 +59,7 @@ export default function Testimonial() {
     },
   ];
 
-  const plugin = React.useRef(Autoplay({ delay: 1000 }));
+  const plugin = React.useRef(Autoplay({ delay: 3000 }));
 
   return (
     <MaxWidthWrapper>

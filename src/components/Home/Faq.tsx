@@ -54,19 +54,19 @@ const Faq = () => {
   return (
     <MaxWidthWrapper className="my-5 mb-10">
       <SectionTitle
-        title="FAQ"
+        title="FAQ's"
         subTitle="A collection of questions that we get the most."
       />
       <div>
         <Accordion
           type="single"
           collapsible
-          className="mx-auto md:max-w-lg xl:max-w-xl"
+          className="mx-auto md:max-w-lg xl:max-w-3xl"
         >
           {bloodDonationFAQ.map((faq, idx) => (
             <AccordionItem key={faq.question + idx} value={`item-${idx}`}>
-              <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
-              <AccordionContent>{faq.answer}</AccordionContent>
+              <AccordionTrigger className="text-left text-lg">{faq.question}</AccordionTrigger>
+              <AccordionContent className="text-base">{faq.answer}</AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
