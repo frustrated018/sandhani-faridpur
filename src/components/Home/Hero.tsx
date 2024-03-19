@@ -34,7 +34,7 @@ export default function Hero() {
 
   return (
     <MaxWidthWrapper className="py-10">
-      <section className="flex flex-col items-center space-y-4">
+      <section className="grid grid-cols-1 items-center gap-5 md:grid-cols-2 xl:grid-cols-3">
         <div className="max-w-[600px] text-center">
           <h1 className="font-cabinate-grotesk text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             Give the gift of <span className="text-primary">life</span>
@@ -46,7 +46,7 @@ export default function Hero() {
         </div>
 
         <Carousel
-          className="mx-auto w-full max-w-screen-lg"
+          className="mx-auto w-full max-w-screen-lg md:col-span-1 xl:col-span-2"
           opts={{ loop: true }}
           plugins={[plugin.current]}
         >
@@ -68,9 +68,9 @@ export default function Hero() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <div className="absolute bottom-0 left-1/2 ml-4 mt-10">
-            <CarouselPrevious className="size-10 sm:size-6" />
-            <CarouselNext className="size-10 sm:size-6" />
+          <div className="absolute bottom-0 left-1/2">
+            <CarouselPrevious />
+            <CarouselNext />
           </div>
         </Carousel>
 
