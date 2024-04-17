@@ -39,6 +39,10 @@ To set up the project locally, follow these steps:
 Contributions are welcome! Feel free to fork this repository and submit a pull request with your changes. However, please note that there are currently no specific guidelines for contributors.
 
 
+## View Live Site
 
+<div align="center">
+<a href="https://sandhani-faridpur.vercel.app">View Demo</a>
+<div/>
 
 
